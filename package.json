@@ -1,0 +1,27 @@
+{
+  "name": "devfolio-dashboard",
+  "version": "1.0.0",
+  "description": "A professional portfolio-ready web application for entry-level web developers featuring authentication, dashboard analytics, REST API integration, CRUD tools, search/filter, validation, responsive design, and dark mode.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "vite --host 0.0.0.0",
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "keywords": [
+    "portfolio",
+    "html5",
+    "css3",
+    "javascript",
+    "crud",
+    "rest-api",
+    "responsive-design"
+  ],
+  "author": "Entry-Level Web Developer Portfolio Project",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "latest"
+  }
+}

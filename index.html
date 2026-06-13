@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="DevFolio Dashboard is a portfolio-ready web app showcasing authentication, REST API integration, CRUD workflows, filtering, validation, responsive UI, and dark mode." />
+    <title>DevFolio Dashboard | Entry-Level Web Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#home" aria-label="DevFolio Dashboard home">
+          <span class="brand__mark">DF</span>
+          <span><strong>DevFolio</strong><small>Dashboard</small></span>
+        </a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="#features">Features</a>
+          <a href="#dashboard">Dashboard</a>
+          <a href="#projects">Projects</a>
+          <a href="#api">API</a>
+        </nav>
+        <div class="topbar__actions">
+          <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
+          <button class="button button--ghost" id="logoutButton" type="button" hidden>Log out</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" id="home">
+          <div class="hero__content">
+            <p class="eyebrow">Portfolio-ready web application</p>
+            <h1>Manage projects, explore API data, and present full-stack thinking.</h1>
+            <p class="hero__copy">A polished single-page app built with HTML5, CSS3, and JavaScript. It demonstrates authentication, validated forms, CRUD operations, REST API integration, search/filter workflows, dashboard analytics, and responsive UI patterns.</p>
+            <div class="hero__actions">
+              <a class="button" href="#auth">Try the demo</a>
+              <a class="button button--secondary" href="#projects">View CRUD</a>
+            </div>
+          </div>
+          <aside class="hero-card" aria-label="Application highlights">
+            <span class="status-pill">Live UI Demo</span>
+            <h2>Entry-Level Web Developer</h2>
+            <ul>
+              <li>Semantic, accessible HTML structure</li>
+              <li>Reusable CSS components and design tokens</li>
+              <li>JavaScript modules and local state management</li>
+              <li>API fetching with graceful error handling</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="features section" id="features">
+          <div class="section__heading">
+            <p class="eyebrow">Core requirements</p>
+            <h2>Everything a hiring manager expects to see</h2>
+          </div>
+          <div class="feature-grid">
+            <article><span>🔐</span><h3>Authentication</h3><p>Register, log in, persist a session, and protect dashboard actions with clear feedback.</p></article>
+            <article><span>📊</span><h3>Dashboard</h3><p>Dynamic stats reflect project data, API content, and authenticated user activity.</p></article>
+            <article><span>🛠️</span><h3>CRUD</h3><p>Create, read, update, and delete portfolio projects using validated form inputs.</p></article>
+            <article><span>🔎</span><h3>Search & Filters</h3><p>Filter project cards by status and search across title, stack, and description.</p></article>
+          </div>
+        </section>
+
+        <section class="auth section" id="auth" aria-labelledby="authTitle">
+          <div class="auth__panel">
+            <p class="eyebrow">Secure demo flow</p>
+            <h2 id="authTitle">Login or create an account</h2>
+            <p>Use any valid email and a password with at least 8 characters. Accounts are stored locally for demo purposes.</p>
+          </div>
+          <form class="form card" id="authForm" novalidate>
+            <div class="segmented-control" role="tablist" aria-label="Authentication mode">
+              <button class="segmented-control__button is-active" type="button" data-auth-mode="login">Login</button>
+              <button class="segmented-control__button" type="button" data-auth-mode="register">Register</button>
+            </div>
+            <label>Full name<span data-register-only hidden> *</span><input id="nameInput" name="name" autocomplete="name" placeholder="Jordan Developer" /></label>
+            <label>Email *<input id="emailInput" name="email" type="email" autocomplete="email" placeholder="jordan@example.com" required /></label>
+            <label>Password *<input id="passwordInput" name="password" type="password" autocomplete="current-password" placeholder="Minimum 8 characters" required minlength="8" /></label>
+            <p class="form__message" id="authMessage" role="status"></p>
+            <button class="button" type="submit" id="authSubmit">Login</button>
+          </form>
+        </section>
+
+        <section class="dashboard section" id="dashboard" aria-labelledby="dashboardTitle">
+          <div class="section__heading">
+            <p class="eyebrow">Dashboard</p>
+            <h2 id="dashboardTitle">Project performance overview</h2>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card"><span id="totalProjects">0</span><p>Total projects</p></article>
+            <article class="stat-card"><span id="completedProjects">0</span><p>Completed</p></article>
+            <article class="stat-card"><span id="inProgressProjects">0</span><p>In progress</p></article>
+            <article class="stat-card"><span id="apiPosts">0</span><p>API posts loaded</p></article>
+          </div>
+        </section>
+
+        <section class="projects section" id="projects" aria-labelledby="projectsTitle">
+          <div class="section__heading section__heading--row">
+            <div><p class="eyebrow">CRUD operations</p><h2 id="projectsTitle">Portfolio project manager</h2></div>
+            <p class="helper-text" id="sessionStatus">Log in to save changes.</p>
+          </div>
+          <div class="workspace">
+            <form class="form card" id="projectForm" novalidate>
+              <input type="hidden" id="projectId" />
+              <label>Project title *<input id="projectTitle" placeholder="Responsive SaaS Landing Page" required minlength="3" /></label>
+              <label>Tech stack *<input id="projectStack" placeholder="HTML, CSS, JavaScript" required /></label>
+              <label>Status *<select id="projectStatus" required><option value="Planning">Planning</option><option value="In Progress">In Progress</option><option value="Completed">Completed</option></select></label>
+              <label>Description *<textarea id="projectDescription" rows="4" placeholder="Describe the problem solved, API used, and result." required minlength="12"></textarea></label>
+              <p class="form__message" id="projectMessage" role="status"></p>
+              <button class="button" type="submit" id="projectSubmit">Add project</button>
+              <button class="button button--ghost" type="button" id="resetProjectForm">Clear</button>
+            </form>
+            <div class="card project-list-card">
+              <div class="toolbar">
+                <label class="search-label">Search<input id="searchInput" type="search" placeholder="Search projects..." /></label>
+                <label>Filter<select id="statusFilter"><option value="All">All</option><option value="Planning">Planning</option><option value="In Progress">In Progress</option><option value="Completed">Completed</option></select></label>
+              </div>
+              <div class="project-list" id="projectList" aria-live="polite"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="api section" id="api" aria-labelledby="apiTitle">
+          <div class="section__heading section__heading--row">
+            <div><p class="eyebrow">REST API Integration</p><h2 id="apiTitle">Latest learning resources</h2></div>
+            <button class="button button--secondary" id="refreshPosts" type="button">Refresh API data</button>
+          </div>
+          <p class="helper-text">Data is fetched from JSONPlaceholder to demonstrate asynchronous REST API integration and error handling.</p>
+          <div class="api-grid" id="apiGrid" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
